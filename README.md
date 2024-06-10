@@ -20,3 +20,43 @@ dtoverlay=i2s-mmap
 # ADAU7002 simple overlay for MEMS microphone
 dtoverlay=adau7002-simple
 ```
+### Save and exit the editor:
+
+### Reboot the Raspberry Pi:
+
+```console
+sudo reboot
+```
+
+### Install the Advanced Linux Sound Architecture (ALSA) utilities:
+
+```console
+sudo apt-get install alsa-utils
+```
+
+### After rebooting, verify that the I2S microphone is recognized by listing the audio devices:
+
+```console
+arecord -l
+```
+
+### If the microphone is correctly listed, record a short audio clip to test it:
+
+IF connected in mono use:
+
+```console
+arecord -D plughw:0 -c1 -r 48000 -f S32_LE -t wav -V mono -v file.wav
+```
+
+IF connected in stereo use:
+
+```console
+arecord -D plughw:0 -c2 -r 48000 -f S32_LE -t wav -V stereo -v file_stereo.wav
+```
+
+### Play back the recorded audio to verify it works:
+
+```console
+aplay file.wav
+```
+
